@@ -31,6 +31,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 
+# playwright
+/playwright-report
+/tests/.artifacts
+/tests/screenshots
+/test-results
+
 # editor
 .idea
 .vscode/*

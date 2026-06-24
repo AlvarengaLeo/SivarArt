@@ -5,6 +5,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { LenisProvider } from "@/src/scroll/lenis-provider";
 import { Navbar } from "@/components/site/navbar";
 import { Footer } from "@/components/site/footer";
+import { CartProvider } from "@/components/cart/cart-provider";
+import { CartSheet } from "@/components/cart/cart-sheet";
 
 const display = Playfair_Display({
   subsets: ["latin"],
@@ -65,11 +67,14 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <LenisProvider>
-            <Navbar />
-            <main>{children}</main>
-            <Footer />
-          </LenisProvider>
+          <CartProvider>
+            <LenisProvider>
+              <Navbar />
+              <main>{children}</main>
+              <Footer />
+              <CartSheet />
+            </LenisProvider>
+          </CartProvider>
         </ThemeProvider>
       </body>
     </html>

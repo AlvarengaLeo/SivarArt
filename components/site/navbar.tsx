@@ -6,6 +6,7 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/site/theme-toggle";
+import { CartButton } from "@/components/cart/cart-sheet";
 
 const NAV = [
   { href: "/descubrir", label: "Descubrir" },
@@ -55,6 +56,7 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-2">
+          <CartButton />
           <ThemeToggle />
           <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
             <Link href="/ingresar">Ingresar</Link>
