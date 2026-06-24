@@ -23,7 +23,8 @@ export default defineConfig({
     { name: "chromium", use: { ...devices["Desktop Chrome"] } },
   ],
   webServer: {
-    command: "npm run dev",
+    // Producción: sirve el build precompilado (rápido y estable para e2e).
+    command: "npm run start",
     url: "http://localhost:3000",
     timeout: 120_000,
     reuseExistingServer: true,
