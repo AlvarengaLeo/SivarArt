@@ -63,6 +63,21 @@ test("rutas secundarias responden", async ({ page }) => {
   }
 });
 
+test("navbar: cada enlace abre su zona", async ({ page }) => {
+  const links: [string, RegExp][] = [
+    ["Descubrir", /\/descubrir$/],
+    ["Tienda", /\/tienda$/],
+    ["Academy", /\/academy$/],
+    ["Mapa", /\/mapa$/],
+  ];
+  for (const [name, urlRe] of links) {
+    await go(page, "/");
+    await page.getByRole("navigation").getByRole("link", { name }).click();
+    await expect(page, `${name} debe navegar`).toHaveURL(urlRe);
+    await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+  }
+});
+
 test("tema oscuro togglea", async ({ page }) => {
   await go(page, "/");
   await page.getByRole("button", { name: /Cambiar tema/i }).click();

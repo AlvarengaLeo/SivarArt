@@ -80,12 +80,13 @@ export default function HomePage() {
         <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-[5] h-32 bg-gradient-to-t from-background to-transparent" />
 
         <div className="relative w-full px-6 pt-28 sm:px-10 lg:px-20">
-          <div className="max-w-3xl">
+          <div className="max-w-4xl">
             <Reveal>
-              <h1 className="font-display text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-[3.5rem]">
-                Democratizando la creatividad
-                <br />
-                de <span className="text-primary">El Salvador</span>
+              <h1 className="font-display text-3xl font-semibold leading-[1.08] sm:text-[2.75rem] lg:text-5xl">
+                <span className="block">Democratizando la creatividad</span>
+                <span className="block">
+                  de <span className="text-primary">El Salvador</span>
+                </span>
               </h1>
             </Reveal>
             <Reveal delay={0.1}>
