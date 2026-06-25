@@ -35,11 +35,8 @@ export function Footer() {
     <footer className="border-t border-border bg-surface-muted/40">
       <div className="container grid gap-10 py-16 md:grid-cols-[1.5fr_repeat(3,1fr)]">
         <div>
-          <div className="flex items-center gap-2 font-display text-xl">
-            <span className="grid h-7 w-7 place-items-center rounded-md bg-primary text-primary-foreground font-mono text-sm">
-              &amp;
-            </span>
-            <span className="font-semibold">SivarArt</span>
+          <div className="font-display text-xl font-semibold">
+            Sivar<span className="text-primary">Art</span>
           </div>
           <p className="mt-4 max-w-xs text-sm text-muted-foreground">
             El hogar del arte salvadoreño. Descubrí, aprendé y adquirí —

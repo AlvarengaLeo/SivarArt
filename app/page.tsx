@@ -48,14 +48,6 @@ const PILLARS = [
   },
 ];
 
-const COMPARISON = [
-  ["Alcance", "Local y limitado", "Internacional — marketplace especializado"],
-  ["Profundidad", "Global pero superficial", "Profundamente salvadoreña"],
-  ["Comercio", "No se puede comprar arte", "Compra-venta real con pago al artista"],
-  ["Aprendizaje", "Artículos de solo lectura", "Cursos: los artistas enseñan"],
-  ["Tema oscuro", "Débil / ausente", "Claro y oscuro de primera"],
-];
-
 const CIRCLE = [
   {
     n: "01",
@@ -87,18 +79,13 @@ export default function HomePage() {
         <div className="pointer-events-none absolute inset-0 -z-[5] bg-gradient-to-r from-background via-background/80 to-transparent" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-[5] h-32 bg-gradient-to-t from-background to-transparent" />
 
-        <div className="container relative pt-28">
-          <div className="max-w-2xl">
+        <div className="relative w-full px-6 pt-28 sm:px-10 lg:px-20">
+          <div className="max-w-3xl">
             <Reveal>
-              <p className="mb-5 inline-flex items-center gap-2 rounded-full border border-border bg-surface/70 px-4 py-1.5 font-mono text-xs uppercase tracking-wider text-muted-foreground backdrop-blur">
-                <span className="size-1.5 rounded-full bg-primary" />
-                El hogar del arte salvadoreño
-              </p>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <h1 className="text-balance font-display text-5xl font-semibold leading-[1.05] sm:text-6xl lg:text-7xl">
-                Democratizando la creatividad de{" "}
-                <span className="text-primary">El Salvador</span>
+              <h1 className="font-display text-4xl font-semibold leading-[1.05] sm:text-5xl lg:text-[3.5rem]">
+                Democratizando la creatividad
+                <br />
+                de <span className="text-primary">El Salvador</span>
               </h1>
             </Reveal>
             <Reveal delay={0.1}>
@@ -149,42 +136,6 @@ export default function HomePage() {
               </RevealItem>
             ))}
           </RevealGroup>
-        </div>
-      </section>
-
-      {/* ── Comparativa vs Google Arts & Culture ─────────── */}
-      <section className="py-24">
-        <div className="container">
-          <Reveal>
-            <h2 className="max-w-2xl text-balance font-display text-3xl font-semibold sm:text-4xl">
-              Inspirado en Google Arts &amp; Culture. Pensado para superarlo.
-            </h2>
-          </Reveal>
-          <Reveal delay={0.05}>
-            <div className="mt-10 overflow-hidden rounded-xl border border-border">
-              <table className="w-full text-left text-sm">
-                <thead className="bg-surface-muted font-mono text-xs uppercase tracking-wider text-muted-foreground">
-                  <tr>
-                    <th className="px-5 py-4">Categoría</th>
-                    <th className="px-5 py-4">Arts &amp; Culture</th>
-                    <th className="px-5 py-4 text-primary">SivarArt</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {COMPARISON.map(([cat, gac, sa], i) => (
-                    <tr
-                      key={cat}
-                      className={i % 2 ? "bg-surface/40" : "bg-surface"}
-                    >
-                      <td className="px-5 py-4 font-medium">{cat}</td>
-                      <td className="px-5 py-4 text-muted-foreground">{gac}</td>
-                      <td className="px-5 py-4 font-medium text-primary">{sa}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </Reveal>
         </div>
       </section>
 

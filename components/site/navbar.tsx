@@ -36,11 +36,11 @@ export function Navbar() {
       )}
     >
       <nav className="container flex h-16 items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 font-display text-xl">
-          <span className="grid h-7 w-7 place-items-center rounded-md bg-primary text-primary-foreground font-mono text-sm">
-            &amp;
-          </span>
-          <span className="font-semibold tracking-tight">SivarArt</span>
+        <Link
+          href="/"
+          className="font-display text-xl font-semibold tracking-tight"
+        >
+          Sivar<span className="text-primary">Art</span>
         </Link>
 
         <div className="hidden items-center gap-1 md:flex">
