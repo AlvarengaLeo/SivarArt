@@ -14,6 +14,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { useCart } from "@/components/cart/cart-provider";
+import { Reveal, RevealGroup, RevealItem } from "@/components/reveal";
 
 const BENEFITS = [
   {
@@ -71,9 +72,9 @@ export default function EnmarcadoPage() {
 
       <section className="py-12">
         <div className="container grid gap-10 lg:grid-cols-[1fr_420px]">
-          <div className="space-y-6">
+          <RevealGroup className="space-y-6">
             {BENEFITS.map((b) => (
-              <div key={b.title} className="flex gap-4">
+              <RevealItem key={b.title} className="flex gap-4">
                 <span className="grid h-11 w-11 shrink-0 place-items-center rounded-md bg-primary/10 text-primary">
                   <b.icon className="size-5" />
                 </span>
@@ -83,10 +84,11 @@ export default function EnmarcadoPage() {
                   </h3>
                   <p className="mt-1 text-sm text-muted-foreground">{b.body}</p>
                 </div>
-              </div>
+              </RevealItem>
             ))}
-          </div>
+          </RevealGroup>
 
+          <Reveal delay={0.1}>
           <Card className="h-fit">
             <CardHeader>
               <CardTitle>Configurá tu marco</CardTitle>
@@ -138,6 +140,7 @@ export default function EnmarcadoPage() {
               </p>
             </CardContent>
           </Card>
+          </Reveal>
         </div>
       </section>
     </>

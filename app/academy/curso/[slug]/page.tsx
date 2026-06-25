@@ -7,6 +7,8 @@ import { formatUSD } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { Separator } from "@/components/ui/separator";
 import { EnrollButton } from "@/components/academy/enroll-button";
+import { Reveal, RevealGroup, RevealItem } from "@/components/reveal";
+import { Parallax } from "@/components/parallax";
 
 export default async function CursoPage({
   params,
@@ -37,7 +39,7 @@ export default async function CursoPage({
       <section className="relative overflow-hidden border-b border-border pt-28">
         <div className="blueprint-grid blueprint-grid-fade absolute inset-0 -z-10 opacity-60" />
         <div className="container grid grid-cols-1 gap-10 pb-14 lg:grid-cols-[1.2fr_1fr]">
-          <div>
+          <Reveal>
             <p className="font-mono text-xs uppercase tracking-wider text-primary">
               Sivar Academy · {course.category}
             </p>
@@ -67,18 +69,25 @@ export default async function CursoPage({
                 <Clock className="size-3.5" /> {hours} h de video
               </Badge>
             </div>
-          </div>
+          </Reveal>
 
-          <div className="rounded-xl border border-border bg-surface p-4 shadow-e2">
+          <Reveal
+            delay={0.1}
+            className="rounded-xl border border-border bg-surface p-4 shadow-e2"
+          >
             <div className="relative aspect-[16/10] overflow-hidden rounded-lg bg-surface-muted">
-              <Image
-                src={course.cover}
-                alt={course.title}
-                fill
-                sizes="(max-width: 1024px) 100vw, 40vw"
-                className="object-cover"
-                priority
-              />
+              <Parallax speed={0.08} className="absolute inset-0">
+                <div className="relative h-full w-full scale-125">
+                  <Image
+                    src={course.cover}
+                    alt={course.title}
+                    fill
+                    sizes="(max-width: 1024px) 100vw, 40vw"
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+              </Parallax>
             </div>
             <div className="mt-5 flex items-baseline justify-between">
               <span className="font-display text-3xl font-semibold">
@@ -94,20 +103,22 @@ export default async function CursoPage({
             <p className="mt-3 text-center text-xs text-muted-foreground">
               {course.lessons} lecciones · {hours} h · ~{avgMin} min por lección
             </p>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       <section className="container py-14">
         <div className="max-w-2xl">
-          <h2 className="font-display text-2xl font-semibold">Temario</h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            {course.lessons} lecciones · {hours} h de contenido
-          </p>
+          <Reveal>
+            <h2 className="font-display text-2xl font-semibold">Temario</h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              {course.lessons} lecciones · {hours} h de contenido
+            </p>
+          </Reveal>
           <Separator className="my-6" />
-          <ul className="space-y-1">
+          <RevealGroup className="space-y-1" gap={0.05}>
             {temario.map((l) => (
-              <li
+              <RevealItem
                 key={l.n}
                 className="flex items-center gap-3 rounded-md px-3 py-3 transition-colors hover:bg-surface-muted"
               >
@@ -119,9 +130,9 @@ export default async function CursoPage({
                 <span className="ml-auto text-xs text-muted-foreground">
                   {avgMin} min
                 </span>
-              </li>
+              </RevealItem>
             ))}
-          </ul>
+          </RevealGroup>
         </div>
       </section>
     </main>

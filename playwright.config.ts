@@ -14,7 +14,8 @@ export default defineConfig({
   reporter: [["list"], ["html", { open: "never" }]],
   outputDir: "./tests/.artifacts",
   use: {
-    baseURL: "http://localhost:3000",
+    // Puerto 3210 dedicado a SivarArt: el 3000 lo ocupa otro proyecto (DataTouch).
+    baseURL: "http://localhost:3210",
     trace: "retain-on-failure",
     screenshot: "only-on-failure",
     viewport: { width: 1366, height: 900 },
@@ -23,9 +24,9 @@ export default defineConfig({
     { name: "chromium", use: { ...devices["Desktop Chrome"] } },
   ],
   webServer: {
-    // Producción: sirve el build precompilado (rápido y estable para e2e).
-    command: "npm run start",
-    url: "http://localhost:3000",
+    // Producción en puerto propio (build precompilado, rápido y estable).
+    command: "npm run start -- -p 3210",
+    url: "http://localhost:3210",
     timeout: 120_000,
     reuseExistingServer: true,
     stdout: "ignore",

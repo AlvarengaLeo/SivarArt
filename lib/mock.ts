@@ -1,7 +1,44 @@
 import type { Artist, Artwork, Course, MapLocation, Supply } from "./types";
 
-const img = (seed: string, w = 900, h = 1200) =>
-  `https://picsum.photos/seed/${seed}/${w}/${h}`;
+/**
+ * Imágenes reales vendorizadas en /public/img (cargan siempre, rápido, sin
+ * depender de hotlink ni rate-limit; same-origin → válidas como texturas WebGL).
+ * Origen: Wikimedia Commons (contenido salvadoreño auténtico, licencias libres
+ * CC BY / CC BY-SA / CC0 / PD) + Unsplash (retratos/clases). Créditos en CREDITS.md.
+ */
+export const IMAGES = {
+  // Obras
+  obraMemoria: "/img/obra-memoria.jpg",
+  obraPueblo: "/img/obra-pueblo.jpg",
+  obraOccidente: "/img/obra-occidente.jpg",
+  obraMuro: "/img/obra-muro.jpg",
+  obraAnil: "/img/obra-anil.jpg",
+  obraFiesta: "/img/obra-fiesta.jpg",
+  obraVolcan: "/img/obra-volcan.jpg",
+  obraEsquina: "/img/obra-esquina.jpg",
+  // Artistas (retratos)
+  artistFernanda: "/img/artist-fernanda.jpg",
+  artistTomas: "/img/artist-tomas.jpg",
+  artistAna: "/img/artist-ana.jpg",
+  artistDiego: "/img/artist-diego.jpg",
+  // Cursos
+  cursoAcrilico: "/img/curso-acrilico.jpg",
+  cursoLaPalma: "/img/curso-lapalma.jpg",
+  cursoFoto: "/img/curso-foto.jpg",
+  cursoMural: "/img/curso-mural.jpg",
+  // Insumos
+  insumoAcrilicos: "/img/insumo-acrilicos.jpg",
+  insumoLienzo: "/img/insumo-lienzo.jpg",
+  insumoPinceles: "/img/insumo-pinceles.jpg",
+  insumoCaballete: "/img/insumo-caballete.jpg",
+  // Hero + secciones
+  hero1: "/img/hero-1.jpg",
+  hero2: "/img/hero-2.jpg",
+  hero3: "/img/hero-3.jpg",
+  seccionHub: "/img/seccion-hub.jpg",
+  seccionMapa: "/img/seccion-mapa.jpg",
+  seccionAcademy: "/img/seccion-academy.jpg",
+} as const;
 
 export const ARTISTS: Artist[] = [
   {
@@ -9,7 +46,7 @@ export const ARTISTS: Artist[] = [
     name: "Fernanda Cuéllar",
     region: "San Salvador",
     bio: "Pintora contemporánea que explora la memoria urbana de la capital.",
-    avatar: img("art-fer", 400, 400),
+    avatar: IMAGES.artistFernanda,
     featured: true,
   },
   {
@@ -17,7 +54,7 @@ export const ARTISTS: Artist[] = [
     name: "Tomás Mejía",
     region: "La Palma, Chalatenango",
     bio: "Heredero del estilo naïf de La Palma fundado por Fernando Llort.",
-    avatar: img("art-tomas", 400, 400),
+    avatar: IMAGES.artistTomas,
     featured: true,
   },
   {
@@ -25,14 +62,14 @@ export const ARTISTS: Artist[] = [
     name: "Ana Rivas",
     region: "Santa Ana",
     bio: "Fotógrafa documental del occidente salvadoreño.",
-    avatar: img("art-ana", 400, 400),
+    avatar: IMAGES.artistAna,
   },
   {
     slug: "diego-portillo",
     name: "Diego Portillo",
     region: "San Miguel",
     bio: "Muralista y artista urbano del oriente del país.",
-    avatar: img("art-diego", 400, 400),
+    avatar: IMAGES.artistDiego,
   },
 ];
 
@@ -51,7 +88,7 @@ export const ARTWORKS: Artwork[] = [
     year: 2024,
     widthCm: 80,
     heightCm: 100,
-    image: img("obra-1"),
+    image: IMAGES.obraMemoria,
     description:
       "Una meditación sobre la memoria colectiva de la capital, entre lo que fue y lo que permanece.",
     available: true,
@@ -70,7 +107,7 @@ export const ARTWORKS: Artwork[] = [
     year: 2023,
     widthCm: 60,
     heightCm: 60,
-    image: img("obra-2"),
+    image: IMAGES.obraPueblo,
     description:
       "El característico estilo de La Palma: campos, casitas y rostros en geometrías vibrantes.",
     available: true,
@@ -89,7 +126,7 @@ export const ARTWORKS: Artwork[] = [
     year: 2024,
     widthCm: 50,
     heightCm: 70,
-    image: img("obra-3"),
+    image: IMAGES.obraOccidente,
     description:
       "Serie documental de los mercados y volcanes del occidente salvadoreño.",
     available: true,
@@ -108,7 +145,7 @@ export const ARTWORKS: Artwork[] = [
     year: 2025,
     widthCm: 120,
     heightCm: 90,
-    image: img("obra-4"),
+    image: IMAGES.obraMuro,
     description:
       "Fragmento de mural sobre la identidad migrante del oriente del país.",
     available: true,
@@ -127,7 +164,7 @@ export const ARTWORKS: Artwork[] = [
     year: 2023,
     widthCm: 70,
     heightCm: 90,
-    image: img("obra-5"),
+    image: IMAGES.obraAnil,
     description: "Homenaje al añil, oro azul de la historia salvadoreña.",
     available: true,
   },
@@ -145,7 +182,7 @@ export const ARTWORKS: Artwork[] = [
     year: 2024,
     widthCm: 55,
     heightCm: 75,
-    image: img("obra-6"),
+    image: IMAGES.obraFiesta,
     description: "El bullicio de una fiesta patronal en clave de color.",
     available: true,
   },
@@ -163,7 +200,7 @@ export const ARTWORKS: Artwork[] = [
     year: 2022,
     widthCm: 60,
     heightCm: 40,
-    image: img("obra-7"),
+    image: IMAGES.obraVolcan,
     description: "El volcán de Santa Ana al amanecer.",
     available: true,
   },
@@ -181,7 +218,7 @@ export const ARTWORKS: Artwork[] = [
     year: 2025,
     widthCm: 90,
     heightCm: 90,
-    image: img("obra-8"),
+    image: IMAGES.obraEsquina,
     description: "Retrato urbano de una esquina migueleña.",
     available: false,
   },
@@ -195,7 +232,7 @@ export const SUPPLIES: Supply[] = [
     category: "Pinturas",
     priceCents: 4500,
     brand: "Importado",
-    image: img("sup-1", 600, 600),
+    image: IMAGES.insumoAcrilicos,
   },
   {
     id: "s2",
@@ -204,7 +241,7 @@ export const SUPPLIES: Supply[] = [
     category: "Soportes",
     priceCents: 2200,
     brand: "Importado",
-    image: img("sup-2", 600, 600),
+    image: IMAGES.insumoLienzo,
   },
   {
     id: "s3",
@@ -213,7 +250,7 @@ export const SUPPLIES: Supply[] = [
     category: "Pinceles",
     priceCents: 3200,
     brand: "Importado",
-    image: img("sup-3", 600, 600),
+    image: IMAGES.insumoPinceles,
   },
   {
     id: "s4",
@@ -222,7 +259,7 @@ export const SUPPLIES: Supply[] = [
     category: "Equipo",
     priceCents: 7800,
     brand: "Importado",
-    image: img("sup-4", 600, 600),
+    image: IMAGES.insumoCaballete,
   },
 ];
 
@@ -237,7 +274,7 @@ export const COURSES: Course[] = [
     category: "Pintura",
     lessons: 12,
     durationMin: 180,
-    cover: img("cur-1", 800, 500),
+    cover: IMAGES.cursoAcrilico,
     summary: "Desde cero: materiales, color y tus primeras obras en acrílico.",
   },
   {
@@ -250,9 +287,8 @@ export const COURSES: Course[] = [
     category: "Pintura",
     lessons: 16,
     durationMin: 240,
-    cover: img("cur-2", 800, 500),
-    summary:
-      "Aprendé el inconfundible estilo naïf salvadoreño paso a paso.",
+    cover: IMAGES.cursoLaPalma,
+    summary: "Aprendé el inconfundible estilo naïf salvadoreño paso a paso.",
   },
   {
     slug: "fotografia-documental",
@@ -264,7 +300,7 @@ export const COURSES: Course[] = [
     category: "Fotografía",
     lessons: 10,
     durationMin: 150,
-    cover: img("cur-3", 800, 500),
+    cover: IMAGES.cursoFoto,
     summary: "Contá historias reales con tu cámara.",
   },
   {
@@ -277,7 +313,7 @@ export const COURSES: Course[] = [
     category: "Arte urbano",
     lessons: 14,
     durationMin: 300,
-    cover: img("cur-4", 800, 500),
+    cover: IMAGES.cursoMural,
     summary: "Del boceto al muro: técnica, escala y aerosol.",
   },
 ];

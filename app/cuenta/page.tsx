@@ -13,6 +13,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Reveal, RevealGroup, RevealItem } from "@/components/reveal";
 
 const CARDS = [
   {
@@ -41,36 +42,41 @@ export default async function CuentaPage() {
 
   return (
     <div className="space-y-8">
-      <header>
-        <p className="font-mono text-xs uppercase tracking-wider text-primary">
-          Tu cuenta
-        </p>
-        <h1 className="mt-2 font-display text-3xl font-semibold">
-          Hola de nuevo
-        </h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Sesión iniciada como{" "}
-          <span className="font-medium text-foreground">{email}</span>
-        </p>
-      </header>
+      <Reveal>
+        <header>
+          <p className="font-mono text-xs uppercase tracking-wider text-primary">
+            Tu cuenta
+          </p>
+          <h1 className="mt-2 font-display text-3xl font-semibold">
+            Hola de nuevo
+          </h1>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Sesión iniciada como{" "}
+            <span className="font-medium text-foreground">{email}</span>
+          </p>
+        </header>
+      </Reveal>
 
-      <div className="grid grid-cols-1 gap-5 sm:grid-cols-3">
+      <RevealGroup className="grid grid-cols-1 gap-5 sm:grid-cols-3">
         {CARDS.map(({ href, title, description, icon: Icon }) => (
-          <Link key={title} href={href} className="group block">
-            <Card className="h-full transition-shadow hover:shadow-e2">
-              <CardHeader>
-                <Icon className="size-6 text-primary" />
-                <CardTitle className="mt-2 flex items-center justify-between text-lg">
-                  {title}
-                  <ArrowRight className="size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
-                </CardTitle>
-                <CardDescription>{description}</CardDescription>
-              </CardHeader>
-            </Card>
-          </Link>
+          <RevealItem key={title}>
+            <Link href={href} className="group block h-full">
+              <Card className="h-full transition-shadow hover:shadow-e2">
+                <CardHeader>
+                  <Icon className="size-6 text-primary" />
+                  <CardTitle className="mt-2 flex items-center justify-between text-lg">
+                    {title}
+                    <ArrowRight className="size-4 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
+                  </CardTitle>
+                  <CardDescription>{description}</CardDescription>
+                </CardHeader>
+              </Card>
+            </Link>
+          </RevealItem>
         ))}
-      </div>
+      </RevealGroup>
 
+      <Reveal>
       <Card>
         <CardHeader>
           <CardTitle className="text-lg">Pedidos recientes</CardTitle>
@@ -100,6 +106,7 @@ export default async function CuentaPage() {
           </ul>
         </CardContent>
       </Card>
+      </Reveal>
     </div>
   );
 }

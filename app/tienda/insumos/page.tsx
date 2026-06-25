@@ -1,6 +1,6 @@
 import { SUPPLIES } from "@/lib/mock";
 import { PageHeader } from "@/components/site/page-header";
-import { Reveal, RevealGroup } from "@/components/reveal";
+import { RevealGroup, RevealItem } from "@/components/reveal";
 import { SupplyCard } from "@/components/shop/supply-card";
 
 export default function InsumosPage() {
@@ -16,9 +16,9 @@ export default function InsumosPage() {
         <div className="container">
           <RevealGroup className="grid grid-cols-2 gap-6 lg:grid-cols-4">
             {SUPPLIES.map((supply) => (
-              <Reveal key={supply.id}>
+              <RevealItem key={supply.id}>
                 <SupplyCard supply={supply} />
-              </Reveal>
+              </RevealItem>
             ))}
           </RevealGroup>
         </div>

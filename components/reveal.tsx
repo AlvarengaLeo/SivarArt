@@ -27,6 +27,21 @@ export function Reveal({
   );
 }
 
+/** Item para usar DENTRO de <RevealGroup> (hereda el stagger del padre). */
+export function RevealItem({
+  children,
+  className,
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <motion.div className={className} variants={fadeUp}>
+      {children}
+    </motion.div>
+  );
+}
+
 export function RevealGroup({
   children,
   className,

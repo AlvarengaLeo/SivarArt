@@ -6,6 +6,8 @@ import { getArtist, artworksByArtist, COURSES } from "@/lib/mock";
 import { Badge } from "@/components/ui/badge";
 import { ArtworkCard } from "@/components/art/artwork-card";
 import { CourseCard } from "@/components/art/course-card";
+import { Reveal, RevealGroup, RevealItem } from "@/components/reveal";
+import { Parallax } from "@/components/parallax";
 
 export async function generateMetadata({
   params,
@@ -39,8 +41,11 @@ export default async function ArtistaPage({
       <section className="relative overflow-hidden border-b border-border pt-28">
         <div className="blueprint-grid blueprint-grid-fade absolute inset-0 -z-10 opacity-60" />
         <div className="container pb-12">
-          <div className="flex flex-col items-start gap-8 sm:flex-row sm:items-center">
-            <div className="relative size-28 shrink-0 overflow-hidden rounded-full border border-border bg-surface-muted shadow-e2 sm:size-36">
+          <Reveal className="flex flex-col items-start gap-8 sm:flex-row sm:items-center">
+            <Parallax
+              speed={0.12}
+              className="relative size-28 shrink-0 rounded-full border border-border bg-surface-muted shadow-e2 sm:size-36"
+            >
               <Image
                 src={artist.avatar}
                 alt={artist.name}
@@ -48,7 +53,7 @@ export default async function ArtistaPage({
                 sizes="144px"
                 className="object-cover"
               />
-            </div>
+            </Parallax>
             <div>
               {artist.featured && <Badge variant="gold">Artista destacado</Badge>}
               <h1 className="mt-3 font-display text-4xl font-semibold sm:text-5xl">
@@ -62,27 +67,29 @@ export default async function ArtistaPage({
                 {artist.bio}
               </p>
             </div>
-          </div>
+          </Reveal>
         </div>
       </section>
 
       {/* Obras */}
       <section className="container py-16">
-        <div className="flex items-baseline justify-between gap-4">
+        <Reveal className="flex items-baseline justify-between gap-4">
           <h2 className="font-display text-2xl font-semibold sm:text-3xl">
             Obra
           </h2>
           <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
             {works.length} {works.length === 1 ? "pieza" : "piezas"}
           </span>
-        </div>
+        </Reveal>
 
         {works.length > 0 ? (
-          <div className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
+          <RevealGroup className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
             {works.map((artwork) => (
-              <ArtworkCard key={artwork.id} artwork={artwork} />
+              <RevealItem key={artwork.id}>
+                <ArtworkCard artwork={artwork} />
+              </RevealItem>
             ))}
-          </div>
+          </RevealGroup>
         ) : (
           <p className="mt-6 text-muted-foreground">
             Este artista aún no tiene obra publicada.
@@ -94,17 +101,21 @@ export default async function ArtistaPage({
       {courses.length > 0 && (
         <section className="border-t border-border bg-surface/40 py-16">
           <div className="container">
-            <h2 className="font-display text-2xl font-semibold sm:text-3xl">
-              Cursos con {artist.name}
-            </h2>
-            <p className="mt-2 text-muted-foreground">
-              Aprendé su técnica directamente de la fuente.
-            </p>
-            <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <Reveal>
+              <h2 className="font-display text-2xl font-semibold sm:text-3xl">
+                Cursos con {artist.name}
+              </h2>
+              <p className="mt-2 text-muted-foreground">
+                Aprendé su técnica directamente de la fuente.
+              </p>
+            </Reveal>
+            <RevealGroup className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {courses.map((course) => (
-                <CourseCard key={course.slug} course={course} />
+                <RevealItem key={course.slug}>
+                  <CourseCard course={course} />
+                </RevealItem>
               ))}
-            </div>
+            </RevealGroup>
           </div>
         </section>
       )}

@@ -3,7 +3,7 @@ import { COURSES } from "@/lib/mock";
 import { CourseCard } from "@/components/art/course-card";
 import { PageHeader } from "@/components/site/page-header";
 import { Button } from "@/components/ui/button";
-import { Reveal, RevealGroup } from "@/components/reveal";
+import { Reveal, RevealGroup, RevealItem } from "@/components/reveal";
 
 export const metadata = {
   title: "Sivar Academy",
@@ -22,7 +22,9 @@ export default function AcademyPage() {
       <section className="container py-14">
         <RevealGroup className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {COURSES.map((course) => (
-            <CourseCard key={course.slug} course={course} />
+            <RevealItem key={course.slug}>
+              <CourseCard course={course} />
+            </RevealItem>
           ))}
         </RevealGroup>
       </section>

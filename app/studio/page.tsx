@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { StatCard } from "@/components/studio/stat-card";
+import { Reveal, RevealGroup, RevealItem } from "@/components/reveal";
 
 const STATS = [
   { label: "Ventas del mes", value: "$1,840", trend: 12 },
@@ -20,25 +21,25 @@ export default function StudioDashboardPage() {
 
   return (
     <div className="space-y-8">
-      <header>
-        <h1 className="font-display text-3xl font-semibold">Dashboard</h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Tu actividad como creador en SivarArt.
-        </p>
-      </header>
+      <Reveal>
+        <header>
+          <h1 className="font-display text-3xl font-semibold">Dashboard</h1>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Tu actividad como creador en SivarArt.
+          </p>
+        </header>
+      </Reveal>
 
-      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
+      <RevealGroup className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         {STATS.map((s) => (
-          <StatCard
-            key={s.label}
-            label={s.label}
-            value={s.value}
-            trend={s.trend}
-          />
+          <RevealItem key={s.label}>
+            <StatCard label={s.label} value={s.value} trend={s.trend} />
+          </RevealItem>
         ))}
-      </div>
+      </RevealGroup>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[1.6fr_1fr]">
+        <Reveal>
         <Card>
           <CardHeader>
             <CardTitle className="text-lg">Obras recientes</CardTitle>
@@ -85,7 +86,9 @@ export default function StudioDashboardPage() {
             </div>
           </CardContent>
         </Card>
+        </Reveal>
 
+        <Reveal delay={0.08}>
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-lg">
@@ -110,6 +113,7 @@ export default function StudioDashboardPage() {
             </Button>
           </CardContent>
         </Card>
+        </Reveal>
       </div>
     </div>
   );

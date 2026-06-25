@@ -2,7 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Frame, Package, Palette } from "lucide-react";
 import { ARTWORKS } from "@/lib/mock";
 import { PageHeader } from "@/components/site/page-header";
-import { Reveal, RevealGroup } from "@/components/reveal";
+import { Reveal, RevealGroup, RevealItem } from "@/components/reveal";
 import { ArtworkCard } from "@/components/art/artwork-card";
 import {
   Card,
@@ -51,7 +51,7 @@ export default function TiendaPage() {
         <div className="container">
           <RevealGroup className="grid gap-6 md:grid-cols-3">
             {ZONES.map((zone) => (
-              <Reveal key={zone.href}>
+              <RevealItem key={zone.href}>
                 <Link href={zone.href} className="group block h-full">
                   <Card className="h-full transition-shadow hover:shadow-e2">
                     <CardHeader>
@@ -66,7 +66,7 @@ export default function TiendaPage() {
                     </CardHeader>
                   </Card>
                 </Link>
-              </Reveal>
+              </RevealItem>
             ))}
           </RevealGroup>
         </div>
@@ -92,11 +92,13 @@ export default function TiendaPage() {
               </Link>
             </div>
           </Reveal>
-          <div className="mt-10 grid grid-cols-2 gap-6 lg:grid-cols-4">
+          <RevealGroup className="mt-10 grid grid-cols-2 gap-6 lg:grid-cols-4">
             {featured.map((artwork) => (
-              <ArtworkCard key={artwork.id} artwork={artwork} />
+              <RevealItem key={artwork.id}>
+                <ArtworkCard artwork={artwork} />
+              </RevealItem>
             ))}
-          </div>
+          </RevealGroup>
         </div>
       </section>
     </>

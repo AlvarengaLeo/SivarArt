@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import {
   Store,
@@ -11,7 +12,9 @@ import {
 import { PageHeader } from "@/components/site/page-header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Reveal, RevealGroup } from "@/components/reveal";
+import { Reveal, RevealGroup, RevealItem } from "@/components/reveal";
+import { Parallax } from "@/components/parallax";
+import { IMAGES } from "@/lib/mock";
 
 export const metadata: Metadata = {
   title: "Sobre SivarArt | Nuestra historia y misión",
@@ -138,7 +141,7 @@ export default function AboutPage() {
           </Reveal>
           <RevealGroup className="mt-12 grid gap-6 md:grid-cols-3">
             {STAGES.map((s) => (
-              <Reveal key={s.n}>
+              <RevealItem key={s.n} className="h-full">
                 <div className="h-full rounded-lg border border-border bg-surface p-6">
                   <span className="font-mono text-3xl font-semibold text-primary/30">
                     {s.n}
@@ -148,10 +151,24 @@ export default function AboutPage() {
                   </h3>
                   <p className="mt-2 text-sm text-muted-foreground">{s.d}</p>
                 </div>
-              </Reveal>
+              </RevealItem>
             ))}
           </RevealGroup>
         </div>
+      </section>
+
+      {/* Banda visual — paisaje salvadoreño */}
+      <section className="border-b border-border">
+        <Parallax speed={0.18} className="relative h-64 w-full sm:h-80">
+          <Image
+            src={IMAGES.seccionMapa}
+            alt="Atardecer en El Salvador"
+            fill
+            sizes="100vw"
+            className="scale-110 object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-foreground/55 to-transparent" />
+        </Parallax>
       </section>
 
       {/* Modelo de negocio — 5 fuentes */}
@@ -167,7 +184,7 @@ export default function AboutPage() {
           </Reveal>
           <RevealGroup className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {REVENUE.map((r) => (
-              <Reveal key={r.t}>
+              <RevealItem key={r.t} className="h-full">
                 <Card className="h-full">
                   <CardHeader>
                     <span className="grid h-11 w-11 place-items-center rounded-md bg-primary/10 text-primary">
@@ -179,7 +196,7 @@ export default function AboutPage() {
                     <p className="text-sm text-muted-foreground">{r.d}</p>
                   </CardContent>
                 </Card>
-              </Reveal>
+              </RevealItem>
             ))}
           </RevealGroup>
         </div>

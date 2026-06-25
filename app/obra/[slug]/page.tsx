@@ -11,6 +11,7 @@ import { ArtworkCard } from "@/components/art/artwork-card";
 import { TechnicalFiche } from "@/components/art/technical-fiche";
 import { AddToCartButton } from "@/components/art/add-to-cart-button";
 import { DeepZoomViewer } from "@/components/art/deep-zoom-viewer";
+import { Reveal, RevealGroup, RevealItem } from "@/components/reveal";
 
 export async function generateMetadata({
   params,
@@ -51,10 +52,12 @@ export default async function ObraPage({
         {/* 2 columnas */}
         <div className="grid gap-10 lg:grid-cols-2">
           {/* Izquierda: visor zoom HD */}
-          <DeepZoomViewer artwork={artwork} />
+          <Reveal>
+            <DeepZoomViewer artwork={artwork} />
+          </Reveal>
 
           {/* Derecha: ficha + compra */}
-          <div>
+          <Reveal delay={0.08}>
             <Badge variant="outline">{artwork.movement}</Badge>
             <h1 className="mt-3 font-display text-3xl font-semibold sm:text-4xl">
               {artwork.title}
@@ -81,20 +84,24 @@ export default async function ObraPage({
               Ficha técnica
             </h2>
             <TechnicalFiche artwork={artwork} />
-          </div>
+          </Reveal>
         </div>
 
         {/* Relacionadas */}
         {related.length > 0 && (
           <section className="mt-20 border-t border-border pt-12">
-            <h2 className="font-display text-2xl font-semibold">
-              Más de {artwork.artistName}
-            </h2>
-            <div className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
+            <Reveal>
+              <h2 className="font-display text-2xl font-semibold">
+                Más de {artwork.artistName}
+              </h2>
+            </Reveal>
+            <RevealGroup className="mt-8 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
               {related.map((a) => (
-                <ArtworkCard key={a.id} artwork={a} />
+                <RevealItem key={a.id}>
+                  <ArtworkCard artwork={a} />
+                </RevealItem>
               ))}
-            </div>
+            </RevealGroup>
           </section>
         )}
       </div>

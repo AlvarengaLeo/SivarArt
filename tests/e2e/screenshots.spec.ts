@@ -36,8 +36,8 @@ const PAGES: [string, string][] = [
 
 for (const [path, name] of PAGES) {
   test(`screenshot ${name}`, async ({ page }) => {
-    await page.goto(path);
-    await page.waitForTimeout(2500); // dejar montar 3D / imágenes
+    await page.goto(path, { waitUntil: "domcontentloaded" });
+    await page.waitForTimeout(3000); // dejar montar 3D / imágenes remotas
     await autoScroll(page);
     await page.screenshot({
       path: `tests/screenshots/${name}.png`,
@@ -47,7 +47,7 @@ for (const [path, name] of PAGES) {
 }
 
 test("screenshot home-dark", async ({ page }) => {
-  await page.goto("/");
+  await page.goto("/", { waitUntil: "domcontentloaded" });
   await page.getByRole("button", { name: /Cambiar tema/i }).click();
   await page.waitForTimeout(1500);
   await autoScroll(page);

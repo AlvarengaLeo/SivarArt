@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
   ArrowRight,
   Boxes,
@@ -9,7 +10,9 @@ import {
   Store,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Reveal, RevealGroup } from "@/components/reveal";
+import { Reveal, RevealGroup, RevealItem } from "@/components/reveal";
+import { Parallax } from "@/components/parallax";
+import { IMAGES } from "@/lib/mock";
 import { HeroCanvas } from "@/components/landing/hero-canvas";
 
 const PILLARS = [
@@ -76,10 +79,13 @@ export default function HomePage() {
     <>
       {/* ── Hero ─────────────────────────────────────────── */}
       <section className="relative flex min-h-dvh items-center overflow-hidden">
-        <div className="blueprint-grid blueprint-grid-fade absolute inset-0 -z-10" />
-        <div className="absolute inset-0 -z-10 opacity-90">
+        <div className="blueprint-grid blueprint-grid-fade absolute inset-0 -z-20" />
+        <div className="absolute inset-0 -z-10">
           <HeroCanvas />
         </div>
+        {/* velo para legibilidad del texto sobre las obras */}
+        <div className="pointer-events-none absolute inset-0 -z-[5] bg-gradient-to-r from-background via-background/80 to-transparent" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-[5] h-32 bg-gradient-to-t from-background to-transparent" />
 
         <div className="container relative pt-28">
           <div className="max-w-2xl">
@@ -130,7 +136,7 @@ export default function HomePage() {
           </Reveal>
           <RevealGroup className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {PILLARS.map((p) => (
-              <Reveal key={p.title}>
+              <RevealItem key={p.title} className="h-full">
                 <article className="group h-full rounded-lg border border-border bg-surface p-6 shadow-e1 transition-shadow hover:shadow-e2">
                   <span className="grid h-11 w-11 place-items-center rounded-md bg-primary/10 text-primary">
                     <p.icon className="size-5" />
@@ -140,7 +146,7 @@ export default function HomePage() {
                   </h3>
                   <p className="mt-2 text-sm text-muted-foreground">{p.body}</p>
                 </article>
-              </Reveal>
+              </RevealItem>
             ))}
           </RevealGroup>
         </div>
@@ -195,8 +201,8 @@ export default function HomePage() {
           </Reveal>
           <RevealGroup className="mt-12 grid gap-6 md:grid-cols-3">
             {CIRCLE.map((s) => (
-              <Reveal key={s.n}>
-                <div className="rounded-lg border border-border bg-surface p-6">
+              <RevealItem key={s.n} className="h-full">
+                <div className="h-full rounded-lg border border-border bg-surface p-6">
                   <span className="font-mono text-3xl font-semibold text-primary/30">
                     {s.n}
                   </span>
@@ -205,9 +211,55 @@ export default function HomePage() {
                   </h3>
                   <p className="mt-2 text-sm text-muted-foreground">{s.d}</p>
                 </div>
-              </Reveal>
+              </RevealItem>
             ))}
           </RevealGroup>
+        </div>
+      </section>
+
+      {/* ── Banda visual · El Hub ────────────────────────── */}
+      <section className="relative isolate overflow-hidden">
+        <Parallax speed={0.18} className="absolute inset-0 -z-10">
+          <Image
+            src={IMAGES.seccionHub}
+            alt="Interior de una galería de arte iluminada"
+            fill
+            sizes="100vw"
+            className="scale-110 object-cover"
+          />
+        </Parallax>
+        {/* overlay para legibilidad */}
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-background via-background/85 to-background/40" />
+        <div className="blueprint-grid blueprint-grid-fade absolute inset-0 -z-10 opacity-40" />
+
+        <div className="container py-32 sm:py-40">
+          <div className="max-w-xl">
+            <Reveal>
+              <p className="font-mono text-xs uppercase tracking-wider text-primary">
+                Un punto de encuentro físico
+              </p>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h2 className="mt-3 text-balance font-display text-3xl font-semibold sm:text-4xl">
+                El Hub: donde lo digital y lo tangible se encuentran.
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="mt-5 max-w-lg text-muted-foreground">
+                Un espacio real en El Salvador para exhibir, enmarcar y conectar a
+                la comunidad — la base de todo el ecosistema SivarArt.
+              </p>
+            </Reveal>
+            <Reveal delay={0.15}>
+              <div className="mt-8">
+                <Button asChild size="lg" variant="secondary">
+                  <Link href="/mapa">
+                    Ver el mapa cultural <ArrowRight />
+                  </Link>
+                </Button>
+              </div>
+            </Reveal>
+          </div>
         </div>
       </section>
 

@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import { ARTWORKS, MOVEMENTS, REGIONS } from "@/lib/mock";
 import { PageHeader } from "@/components/site/page-header";
 import { ArtworkCard } from "@/components/art/artwork-card";
+import { RevealGroup, RevealItem } from "@/components/reveal";
 import { FilterBar, type ShopFilterValue } from "@/components/shop/filter-bar";
 
 export default function ArtePage() {
@@ -53,11 +54,13 @@ export default function ArtePage() {
             </p>
 
             {results.length > 0 ? (
-              <div className="grid grid-cols-2 gap-6 xl:grid-cols-3">
+              <RevealGroup className="grid grid-cols-2 gap-6 xl:grid-cols-3">
                 {results.map((artwork) => (
-                  <ArtworkCard key={artwork.id} artwork={artwork} />
+                  <RevealItem key={artwork.id}>
+                    <ArtworkCard artwork={artwork} />
+                  </RevealItem>
                 ))}
-              </div>
+              </RevealGroup>
             ) : (
               <div className="rounded-xl border border-dashed border-border bg-surface/40 p-12 text-center">
                 <p className="font-display text-lg font-semibold">

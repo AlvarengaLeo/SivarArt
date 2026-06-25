@@ -4,7 +4,7 @@ import { ArrowUpRight, Boxes, MapPin, ScanFace } from "lucide-react";
 import { ARTWORKS } from "@/lib/mock";
 import { PageHeader } from "@/components/site/page-header";
 import { ArtworkCard } from "@/components/art/artwork-card";
-import { Reveal, RevealGroup } from "@/components/reveal";
+import { Reveal, RevealGroup, RevealItem } from "@/components/reveal";
 
 export const metadata: Metadata = {
   title: "Descubrir · SivarArt",
@@ -51,7 +51,7 @@ export default function DescubrirPage() {
       <section className="container py-16">
         <RevealGroup className="grid gap-6 md:grid-cols-3">
           {ENTRIES.map((entry) => (
-            <Reveal key={entry.href}>
+            <RevealItem key={entry.href} className="h-full">
               <Link
                 href={entry.href}
                 className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-border bg-surface p-8 shadow-e1 transition-shadow hover:shadow-e3"
@@ -74,7 +74,7 @@ export default function DescubrirPage() {
                   <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                 </span>
               </Link>
-            </Reveal>
+            </RevealItem>
           ))}
         </RevealGroup>
       </section>
@@ -103,9 +103,9 @@ export default function DescubrirPage() {
 
           <RevealGroup className="mt-10 grid grid-cols-2 gap-5 sm:grid-cols-3 lg:grid-cols-4">
             {feed.map((artwork) => (
-              <Reveal key={artwork.id}>
+              <RevealItem key={artwork.id}>
                 <ArtworkCard artwork={artwork} />
-              </Reveal>
+              </RevealItem>
             ))}
           </RevealGroup>
         </div>

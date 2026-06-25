@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Boxes, Store, Clock, MapPin, ArrowRight } from "lucide-react";
 import { PageHeader } from "@/components/site/page-header";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Reveal, RevealGroup } from "@/components/reveal";
+import { Reveal, RevealGroup, RevealItem } from "@/components/reveal";
+import { Parallax } from "@/components/parallax";
+import { IMAGES } from "@/lib/mock";
 import { HubTour } from "@/components/hub/hub-tour";
 
 export const metadata: Metadata = {
@@ -41,7 +44,7 @@ export default function HubPage() {
       <section className="border-t border-border bg-surface/40 py-20">
         <div className="container">
           <RevealGroup className="grid gap-6 md:grid-cols-2">
-            <Reveal>
+            <RevealItem className="h-full">
               <Card className="h-full">
                 <CardHeader>
                   <span className="grid h-12 w-12 place-items-center rounded-md bg-primary/10 text-primary">
@@ -64,9 +67,9 @@ export default function HubPage() {
                   </Button>
                 </CardContent>
               </Card>
-            </Reveal>
+            </RevealItem>
 
-            <Reveal>
+            <RevealItem className="h-full">
               <Card className="h-full">
                 <CardHeader>
                   <span className="grid h-12 w-12 place-items-center rounded-md bg-primary/10 text-primary">
@@ -89,9 +92,23 @@ export default function HubPage() {
                   </Button>
                 </CardContent>
               </Card>
-            </Reveal>
+            </RevealItem>
           </RevealGroup>
         </div>
+      </section>
+
+      {/* Banda visual del espacio */}
+      <section className="border-t border-border">
+        <Parallax speed={0.18} className="relative h-64 w-full sm:h-80">
+          <Image
+            src={IMAGES.seccionHub}
+            alt="Interior de la galería del Hub de SivarArt"
+            fill
+            sizes="100vw"
+            className="scale-110 object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-foreground/60 to-transparent" />
+        </Parallax>
       </section>
 
       {/* Horarios + dirección */}

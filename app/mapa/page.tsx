@@ -4,6 +4,7 @@ import { PageHeader } from "@/components/site/page-header";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CulturalMap } from "@/components/map/cultural-map";
+import { Reveal, RevealGroup, RevealItem } from "@/components/reveal";
 import { LOCATIONS, REGIONS } from "@/lib/mock";
 import type { MapLocation } from "@/lib/types";
 
@@ -46,12 +47,14 @@ export default function MapaPage() {
       {/* Gemelo DOM accesible: misma información, navegable sin el mapa. */}
       <section className="border-t border-border bg-surface/40 py-16">
         <div className="container">
-          <h2 className="font-display text-2xl font-semibold">
-            Lugares por región
-          </h2>
-          <p className="mt-2 text-sm text-muted-foreground">
-            Una lista accesible con todos los puntos del mapa.
-          </p>
+          <Reveal>
+            <h2 className="font-display text-2xl font-semibold">
+              Lugares por región
+            </h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Una lista accesible con todos los puntos del mapa.
+            </p>
+          </Reveal>
 
           <div className="mt-10 space-y-12">
             {REGIONS.map((region) => {
@@ -59,14 +62,17 @@ export default function MapaPage() {
               if (items.length === 0) return null;
               return (
                 <div key={region}>
-                  <h3 className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-primary">
-                    <MapPin className="size-4" />
-                    {region}
-                  </h3>
-                  <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  <Reveal>
+                    <h3 className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-primary">
+                      <MapPin className="size-4" />
+                      {region}
+                    </h3>
+                  </Reveal>
+                  <RevealGroup className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                     {items.map((loc) => (
-                      <Card key={loc.id}>
-                        <CardHeader>
+                      <RevealItem key={loc.id} className="h-full">
+                        <Card className="h-full">
+                          <CardHeader>
                           <div className="flex items-start justify-between gap-2">
                             <CardTitle className="text-lg">{loc.name}</CardTitle>
                             <Badge variant={KIND_VARIANT[loc.kind]}>
@@ -82,9 +88,10 @@ export default function MapaPage() {
                             {loc.lat.toFixed(4)}, {loc.lng.toFixed(4)}
                           </p>
                         </CardContent>
-                      </Card>
+                        </Card>
+                      </RevealItem>
                     ))}
-                  </div>
+                  </RevealGroup>
                 </div>
               );
             })}

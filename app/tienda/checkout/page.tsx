@@ -18,6 +18,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { Reveal } from "@/components/reveal";
 import { createCheckout } from "@/server/actions/checkout";
 
 const METHODS = [
@@ -67,7 +68,8 @@ export default function CheckoutPage() {
         <PageHeader eyebrow="Tienda · Checkout" title="Tu carrito está vacío" />
         <section className="py-16">
           <div className="container">
-            <Card className="mx-auto max-w-md text-center">
+            <Reveal className="mx-auto max-w-md">
+            <Card className="text-center">
               <CardContent className="p-10">
                 <p className="text-muted-foreground">
                   Todavía no agregaste nada. Descubrí obra original salvadoreña.
@@ -77,6 +79,7 @@ export default function CheckoutPage() {
                 </Button>
               </CardContent>
             </Card>
+            </Reveal>
           </div>
         </section>
       </>
@@ -95,6 +98,7 @@ export default function CheckoutPage() {
         <div className="container grid gap-8 lg:grid-cols-[1fr_420px]">
           {/* Datos del comprador */}
           <form onSubmit={handleSubmit} className="space-y-6">
+            <Reveal>
             <Card>
               <CardHeader>
                 <CardTitle>Datos de envío</CardTitle>
@@ -133,7 +137,9 @@ export default function CheckoutPage() {
                 </div>
               </CardContent>
             </Card>
+            </Reveal>
 
+            <Reveal delay={0.08}>
             <Card>
               <CardHeader>
                 <CardTitle>Métodos de pago</CardTitle>
@@ -151,6 +157,7 @@ export default function CheckoutPage() {
                 </p>
               </CardContent>
             </Card>
+            </Reveal>
 
             {error && (
               <p className="rounded-md border border-terracotta/30 bg-terracotta/10 px-4 py-3 text-sm text-terracotta">
@@ -171,6 +178,7 @@ export default function CheckoutPage() {
 
           {/* Resumen */}
           <aside className="lg:sticky lg:top-24 lg:self-start">
+            <Reveal delay={0.12}>
             <Card>
               <CardHeader>
                 <CardTitle>Resumen del pedido</CardTitle>
@@ -217,6 +225,7 @@ export default function CheckoutPage() {
                 </div>
               </CardContent>
             </Card>
+            </Reveal>
           </aside>
         </div>
       </section>
