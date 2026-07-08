@@ -78,12 +78,12 @@ export default function HomePage() {
         />
         <div className="blueprint-grid blueprint-grid-fade absolute inset-0 -z-20 opacity-[0.12]" />
 
-        {/* escultura 3D a la derecha (full detrás en móvil) */}
-        <div className="absolute inset-0 -z-[5] lg:left-[42%]">
+        {/* escultura 3D a la derecha, contenida (no full-bleed en desktop) */}
+        <div className="absolute inset-0 -z-[5] lg:inset-y-[9%] lg:left-auto lg:right-[3%] lg:w-[42%]">
           <HeroSculptureCanvas />
         </div>
         {/* velo para legibilidad del texto */}
-        <div className="pointer-events-none absolute inset-0 -z-[4] bg-gradient-to-r from-background via-background/85 to-transparent lg:via-background/60" />
+        <div className="pointer-events-none absolute inset-0 -z-[4] bg-gradient-to-r from-background via-background/80 to-transparent lg:via-background/40 lg:to-transparent" />
 
         <div className="container relative pt-24">
           <div className="max-w-2xl">
@@ -93,9 +93,12 @@ export default function HomePage() {
               </p>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="font-display text-5xl font-medium leading-[1.02] sm:text-6xl lg:text-7xl">
-                Conectamos arte, artistas y personas en{" "}
-                <span className="italic text-primary">El Salvador.</span>
+              <h1 className="font-display text-4xl font-medium leading-[1.07] sm:text-5xl lg:text-[3.4rem]">
+                <span className="block">Conectamos arte, artistas</span>
+                <span className="block">
+                  y personas en{" "}
+                  <span className="italic text-primary">El Salvador.</span>
+                </span>
               </h1>
             </Reveal>
             <Reveal delay={0.1}>
