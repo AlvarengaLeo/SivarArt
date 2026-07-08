@@ -26,18 +26,18 @@
   }
 
   .dark {
-    --background: 215 53% 9%;        /* #0A1322 */
-    --surface: 213 52% 13%;          /* #101E33 */
-    --surface-muted: 213 45% 17%;    /* #16263F */
-    --foreground: 44 33% 89%;        /* #EDE7D7 crema text */
-    --muted-foreground: 215 25% 70%;
-    --border: 213 38% 22%;
-    --ring: 226 86% 66%;
-    --primary: 226 86% 66%;          /* #5B82F5 cobalto brillante */
-    --primary-hover: 226 86% 72%;
-    --primary-foreground: 213 60% 8%;
-    --gold: 37 70% 60%;
-    --terracotta: 14 60% 62%;
+    --background: 224 42% 7%;        /* #0A0E1A navy casi negro */
+    --surface: 226 40% 11%;          /* #10162A */
+    --surface-muted: 226 34% 15%;    /* #171F33 */
+    --foreground: 222 40% 94%;       /* #E9EDF6 blanco suave */
+    --muted-foreground: 223 20% 66%; /* #9AA3BC */
+    --border: 226 28% 20%;           /* #252E45 */
+    --ring: 233 92% 74%;
+    --primary: 233 92% 74%;          /* #7C88FF periwinkle */
+    --primary-hover: 233 92% 80%;
+    --primary-foreground: 226 55% 9%;
+    --gold: 36 58% 60%;
+    --terracotta: 14 55% 62%;
   }
 
   * {

@@ -45,7 +45,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "#F7F4EC" },
-    { media: "(prefers-color-scheme: dark)", color: "#0A1322" },
+    { media: "(prefers-color-scheme: dark)", color: "#0A0E1A" },
   ],
 };
 
@@ -63,8 +63,8 @@ export default function RootLayout({
       <body className="min-h-dvh antialiased">
         <ThemeProvider
           attribute="class"
-          defaultTheme="light"
-          enableSystem
+          defaultTheme="dark"
+          enableSystem={false}
           disableTransitionOnChange
         >
           <CartProvider>

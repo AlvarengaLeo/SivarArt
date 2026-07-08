@@ -14,7 +14,9 @@ test("home: hero, nav y CTA", async ({ page }) => {
   await expect(page).toHaveTitle(/SivarArt/i);
   await expect(page.getByRole("heading", { level: 1 })).toContainText(/El Salvador/i);
   await expect(page.getByRole("link", { name: "Descubrir" }).first()).toBeVisible();
-  await expect(page.getByRole("link", { name: /Entrar a la galería/i })).toBeVisible();
+  await expect(
+    page.getByRole("link", { name: "Descubrí arte", exact: true }),
+  ).toBeVisible();
 });
 
 test("navegación principal a las 4 zonas", async ({ page }) => {
@@ -78,10 +80,11 @@ test("navbar: cada enlace abre su zona", async ({ page }) => {
   }
 });
 
-test("tema oscuro togglea", async ({ page }) => {
+test("el toggle de tema funciona (default oscuro)", async ({ page }) => {
   await go(page, "/");
-  await page.getByRole("button", { name: /Cambiar tema/i }).click();
   await expect(page.locator("html")).toHaveClass(/dark/);
+  await page.getByRole("button", { name: /Cambiar tema/i }).click();
+  await expect(page.locator("html")).not.toHaveClass(/dark/);
 });
 
 test("404 on-brand", async ({ page }) => {

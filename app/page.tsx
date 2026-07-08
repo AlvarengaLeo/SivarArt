@@ -1,50 +1,47 @@
 import Link from "next/link";
 import Image from "next/image";
-import {
-  ArrowRight,
-  Boxes,
-  GraduationCap,
-  MapPin,
-  Palette,
-  ScanFace,
-  Store,
-} from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Reveal, RevealGroup, RevealItem } from "@/components/reveal";
 import { Parallax } from "@/components/parallax";
 import { IMAGES } from "@/lib/mock";
-import { HeroCanvas } from "@/components/landing/hero-canvas";
+import { HeroSculptureCanvas } from "@/components/landing/hero-sculpture";
 
 const PILLARS = [
   {
-    icon: Boxes,
+    n: "01",
     title: "Galería 3D inmersiva",
-    body: "Recorré salas en 3D con obra salvadoreña y zoom gigapíxel sobre cada pincelada.",
+    body: "Recorré salas en 3D con obra salvadoreña en alta resolución.",
+    href: "/descubrir/galeria",
+    image: IMAGES.hero1,
   },
   {
-    icon: Store,
-    title: "Marketplace que paga al artista",
+    n: "02",
+    title: "Marketplace",
     body: "Comprá arte, insumos y enmarcado. Comisiones transparentes; el creador cobra.",
+    href: "/tienda/arte",
+    image: IMAGES.obraMemoria,
   },
   {
-    icon: GraduationCap,
+    n: "03",
     title: "Sivar Academy",
     body: "Aprendé técnicas directamente de los artistas. Ellos enseñan, vos creás.",
+    href: "/academy",
+    image: IMAGES.seccionAcademy,
   },
   {
-    icon: ScanFace,
-    title: "Filtro IA estilo La Palma",
-    body: "Convertí tu foto al estilo de la artesanía salvadoreña y compartilo.",
-  },
-  {
-    icon: MapPin,
+    n: "04",
     title: "Mapa cultural",
     body: "Descubrí arte por región: sitios, artistas y el Hub físico de El Salvador.",
+    href: "/mapa",
+    image: IMAGES.seccionMapa,
   },
   {
-    icon: Palette,
+    n: "05",
     title: "Economía circular",
     body: "Enmarcadores e insumos importados conectados — costos bajos, comunidad fuerte.",
+    href: "/about",
+    image: IMAGES.cursoMural,
   },
 ];
 
@@ -71,69 +68,109 @@ export default function HomePage() {
     <>
       {/* ── Hero ─────────────────────────────────────────── */}
       <section className="relative flex min-h-dvh items-center overflow-hidden">
-        <div className="blueprint-grid blueprint-grid-fade absolute inset-0 -z-20" />
-        <div className="absolute inset-0 -z-10">
-          <HeroCanvas />
-        </div>
-        {/* velo para legibilidad del texto sobre las obras */}
-        <div className="pointer-events-none absolute inset-0 -z-[5] bg-gradient-to-r from-background via-background/80 to-transparent" />
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 -z-[5] h-32 bg-gradient-to-t from-background to-transparent" />
+        {/* glow radial + retícula sutil */}
+        <div
+          className="pointer-events-none absolute inset-0 -z-10"
+          style={{
+            background:
+              "radial-gradient(60% 55% at 70% 42%, hsl(233 92% 74% / 0.16), transparent 70%)",
+          }}
+        />
+        <div className="blueprint-grid blueprint-grid-fade absolute inset-0 -z-20 opacity-[0.12]" />
 
-        <div className="relative w-full px-6 pt-28 sm:px-10 lg:px-20">
-          <div className="max-w-4xl">
+        {/* escultura 3D a la derecha (full detrás en móvil) */}
+        <div className="absolute inset-0 -z-[5] lg:left-[42%]">
+          <HeroSculptureCanvas />
+        </div>
+        {/* velo para legibilidad del texto */}
+        <div className="pointer-events-none absolute inset-0 -z-[4] bg-gradient-to-r from-background via-background/85 to-transparent lg:via-background/60" />
+
+        <div className="container relative pt-24">
+          <div className="max-w-2xl">
             <Reveal>
-              <h1 className="font-display text-3xl font-semibold leading-[1.08] sm:text-[2.75rem] lg:text-5xl">
-                <span className="block">Democratizando la creatividad</span>
-                <span className="block">
-                  de <span className="text-primary">El Salvador</span>
-                </span>
+              <p className="mb-6 font-mono text-xs uppercase tracking-[0.28em] text-primary">
+                Un ecosistema para el arte
+              </p>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <h1 className="font-display text-5xl font-medium leading-[1.02] sm:text-6xl lg:text-7xl">
+                Conectamos arte, artistas y personas en{" "}
+                <span className="italic text-primary">El Salvador.</span>
               </h1>
             </Reveal>
             <Reveal delay={0.1}>
-              <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-                Descubrilo en una galería 3D inmersiva, aprendé de sus artistas y
-                adquirí una pieza — apoyando directamente a quienes la crean.
+              <div className="mt-8 h-px w-14 bg-primary/60" />
+            </Reveal>
+            <Reveal delay={0.12}>
+              <p className="mt-6 max-w-md text-lg text-muted-foreground">
+                Explorá, comprá y aprendé en un solo lugar. Impulsamos a la
+                comunidad artística con tecnología, transparencia y propósito.
               </p>
             </Reveal>
-            <Reveal delay={0.15}>
-              <div className="mt-9 flex flex-wrap gap-3">
-                <Button asChild size="lg">
-                  <Link href="/descubrir/galeria">
-                    Entrar a la galería <ArrowRight />
+            <Reveal delay={0.16}>
+              <div className="mt-9 flex flex-wrap items-center gap-5">
+                <Button
+                  asChild
+                  size="lg"
+                  className="bg-gradient-to-r from-primary to-[hsl(226_80%_60%)] shadow-[0_10px_36px_hsl(233_92%_60%/0.4)]"
+                >
+                  <Link href="/descubrir">
+                    Descubrí arte <ArrowRight />
                   </Link>
                 </Button>
-                <Button asChild size="lg" variant="secondary">
-                  <Link href="/tienda/arte">Explorar la tienda</Link>
-                </Button>
+                <Link
+                  href="/about"
+                  className="group inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-foreground/90 transition-colors hover:text-primary"
+                >
+                  Cómo funciona
+                  <ArrowRight className="size-4 transition-transform group-hover:translate-x-1" />
+                </Link>
               </div>
             </Reveal>
           </div>
         </div>
+
+        {/* ficha de la obra */}
+        <div className="absolute bottom-16 right-8 z-10 hidden max-w-[13rem] border-l border-primary/40 pl-4 xl:block">
+          <p className="font-display text-base text-primary">S/T (Cabeza)</p>
+          <p className="mt-1 text-sm text-foreground/90">Fernanda Cuéllar</p>
+          <p className="text-sm text-muted-foreground">Bronce</p>
+          <p className="text-sm text-muted-foreground">Colección privada</p>
+        </div>
       </section>
 
-      {/* ── Pilares ──────────────────────────────────────── */}
-      <section className="border-t border-border bg-surface/40 py-24">
+      {/* ── 5 pilares (tarjetas con imagen) ──────────────── */}
+      <section className="relative pb-24">
         <div className="container">
-          <Reveal>
-            <p className="font-mono text-xs uppercase tracking-wider text-primary">
-              Un ecosistema integral
-            </p>
-            <h2 className="mt-3 max-w-2xl text-balance font-display text-3xl font-semibold sm:text-4xl">
-              Un mercado fragmentado requiere una solución completa.
-            </h2>
-          </Reveal>
-          <RevealGroup className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <RevealGroup
+            gap={0.08}
+            className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5"
+          >
             {PILLARS.map((p) => (
-              <RevealItem key={p.title} className="h-full">
-                <article className="group h-full rounded-lg border border-border bg-surface p-6 shadow-e1 transition-shadow hover:shadow-e2">
-                  <span className="grid h-11 w-11 place-items-center rounded-md bg-primary/10 text-primary">
-                    <p.icon className="size-5" />
-                  </span>
-                  <h3 className="mt-5 font-display text-xl font-semibold">
-                    {p.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{p.body}</p>
-                </article>
+              <RevealItem key={p.n} className="h-full">
+                <Link
+                  href={p.href}
+                  className="group relative flex h-full min-h-[17rem] flex-col justify-end overflow-hidden rounded-xl border border-border p-5"
+                >
+                  <Image
+                    src={p.image}
+                    alt={p.title}
+                    fill
+                    sizes="(max-width: 768px) 50vw, 20vw"
+                    className="object-cover opacity-35 transition duration-500 ease-standard group-hover:scale-105 group-hover:opacity-50"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-background via-background/85 to-background/20" />
+                  <div className="relative">
+                    <span className="font-mono text-xs text-primary">{p.n}</span>
+                    <h3 className="mt-2 font-display text-lg font-medium leading-tight">
+                      {p.title}
+                    </h3>
+                    <p className="mt-2 text-sm text-muted-foreground">
+                      {p.body}
+                    </p>
+                    <ArrowUpRight className="mt-3 size-5 text-muted-foreground transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary" />
+                  </div>
+                </Link>
               </RevealItem>
             ))}
           </RevealGroup>
@@ -144,10 +181,10 @@ export default function HomePage() {
       <section className="border-y border-border bg-surface/40 py-24">
         <div className="container">
           <Reveal>
-            <p className="font-mono text-xs uppercase tracking-wider text-primary">
+            <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
               La ventaja competitiva
             </p>
-            <h2 className="mt-3 max-w-2xl text-balance font-display text-3xl font-semibold sm:text-4xl">
+            <h2 className="mt-3 max-w-2xl text-balance font-display text-3xl font-medium sm:text-4xl">
               Un motor creativo sostenible.
             </h2>
           </Reveal>
@@ -155,10 +192,10 @@ export default function HomePage() {
             {CIRCLE.map((s) => (
               <RevealItem key={s.n} className="h-full">
                 <div className="h-full rounded-lg border border-border bg-surface p-6">
-                  <span className="font-mono text-3xl font-semibold text-primary/30">
+                  <span className="font-mono text-3xl font-semibold text-primary/40">
                     {s.n}
                   </span>
-                  <h3 className="mt-3 font-display text-lg font-semibold">
+                  <h3 className="mt-3 font-display text-lg font-medium">
                     {s.t}
                   </h3>
                   <p className="mt-2 text-sm text-muted-foreground">{s.d}</p>
@@ -177,22 +214,20 @@ export default function HomePage() {
             alt="Interior de una galería de arte iluminada"
             fill
             sizes="100vw"
-            className="scale-110 object-cover"
+            className="scale-110 object-cover opacity-60"
           />
         </Parallax>
-        {/* overlay para legibilidad */}
-        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-background via-background/85 to-background/40" />
-        <div className="blueprint-grid blueprint-grid-fade absolute inset-0 -z-10 opacity-40" />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-background via-background/85 to-background/50" />
 
         <div className="container py-32 sm:py-40">
           <div className="max-w-xl">
             <Reveal>
-              <p className="font-mono text-xs uppercase tracking-wider text-primary">
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
                 Un punto de encuentro físico
               </p>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="mt-3 text-balance font-display text-3xl font-semibold sm:text-4xl">
+              <h2 className="mt-3 text-balance font-display text-3xl font-medium sm:text-4xl">
                 El Hub: donde lo digital y lo tangible se encuentran.
               </h2>
             </Reveal>
@@ -217,10 +252,16 @@ export default function HomePage() {
 
       {/* ── CTA ──────────────────────────────────────────── */}
       <section className="relative overflow-hidden py-28">
-        <div className="blueprint-grid blueprint-grid-fade absolute inset-0 -z-10" />
+        <div
+          className="pointer-events-none absolute inset-0 -z-10"
+          style={{
+            background:
+              "radial-gradient(50% 60% at 50% 50%, hsl(233 92% 74% / 0.12), transparent 70%)",
+          }}
+        />
         <div className="container text-center">
           <Reveal>
-            <h2 className="mx-auto max-w-3xl text-balance font-display text-4xl font-semibold sm:text-5xl">
+            <h2 className="mx-auto max-w-3xl text-balance font-display text-4xl font-medium sm:text-5xl">
               Transformemos el talento de El Salvador en una industria creativa
               sostenible.
             </h2>

@@ -61,7 +61,12 @@ export function Navbar() {
           <Button asChild variant="ghost" size="sm" className="hidden sm:inline-flex">
             <Link href="/ingresar">Ingresar</Link>
           </Button>
-          <Button asChild size="sm" className="hidden sm:inline-flex">
+          <Button
+            asChild
+            size="sm"
+            variant="outline"
+            className="hidden rounded-full px-5 sm:inline-flex"
+          >
             <Link href="/registro">Vendé tu arte</Link>
           </Button>
           <button
