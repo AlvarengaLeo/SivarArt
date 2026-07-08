@@ -70,7 +70,7 @@ export function Navbar() {
             <Link href="/registro">Vendé tu arte</Link>
           </Button>
           <button
-            className="grid h-10 w-10 place-items-center rounded-md md:hidden"
+            className="grid h-11 w-11 place-items-center rounded-md md:hidden"
             onClick={() => setOpen((v) => !v)}
             aria-label="Menú"
           >

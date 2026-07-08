@@ -39,6 +39,13 @@ const config: Config = {
         sans: ["var(--font-sans)", "Inter", "system-ui", "sans-serif"],
         mono: ["var(--font-mono)", "IBM Plex Mono", "monospace"],
       },
+      // Tipografía FLUIDA (clamp) → escala suave en cualquier dimensión, sin saltos.
+      fontSize: {
+        "fluid-hero": ["clamp(2.1rem, 4vw + 1rem, 3.2rem)", { lineHeight: "1.07" }],
+        "fluid-h2": ["clamp(1.55rem, 2.4vw + 0.8rem, 2.35rem)", { lineHeight: "1.14" }],
+        "fluid-h3": ["clamp(1.1rem, 0.8vw + 0.75rem, 1.3rem)", { lineHeight: "1.3" }],
+        "fluid-body": ["clamp(1rem, 0.4vw + 0.9rem, 1.125rem)", { lineHeight: "1.6" }],
+      },
       borderRadius: {
         sm: "6px",
         md: "10px",

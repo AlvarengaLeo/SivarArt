@@ -14,7 +14,7 @@ export function ThemeToggle() {
   return (
     <button
       onClick={() => setTheme(isDark ? "light" : "dark")}
-      className="grid h-10 w-10 place-items-center rounded-md text-muted-foreground transition-colors hover:bg-surface-muted hover:text-foreground"
+      className="grid h-11 w-11 place-items-center rounded-md text-muted-foreground transition-colors hover:bg-surface-muted hover:text-foreground"
       aria-label="Cambiar tema"
     >
       {mounted && isDark ? <Sun className="size-5" /> : <Moon className="size-5" />}

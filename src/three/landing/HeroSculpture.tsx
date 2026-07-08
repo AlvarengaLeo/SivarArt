@@ -5,7 +5,6 @@ import {
   Lightformer,
   Sparkles,
   Float,
-  ContactShadows,
   useGLTF,
 } from "@react-three/drei";
 import { EffectComposer, Bloom, Vignette } from "@react-three/postprocessing";
@@ -17,6 +16,8 @@ import * as THREE from "three";
 const BRONZE = "#8a6a3c";
 const PERIWINKLE = "#6e7bf2";
 const MODEL = "/models/bust.glb";
+// Orientación base para que la cara mire a la cámara (+Z).
+const FACE_OFFSET = -Math.PI / 2;
 
 useGLTF.preload(MODEL);
 
@@ -56,11 +57,12 @@ function Bust() {
     if (!ref.current) return;
     const t = state.clock.elapsedTime;
     // oscilación suave que muestra siempre la cara (no giro completo)
-    const baseY = reduce ? 0 : Math.sin(t * 0.3) * 0.32;
+    // se mantiene de frente: oscilación mínima + parallax sutil
+    const baseY = reduce ? 0 : Math.sin(t * 0.3) * 0.1;
     ref.current.rotation.y = THREE.MathUtils.lerp(
       ref.current.rotation.y,
-      baseY + state.pointer.x * 0.18,
-      0.05,
+      FACE_OFFSET + baseY + state.pointer.x * 0.12,
+      0.06,
     );
     ref.current.rotation.x = THREE.MathUtils.lerp(
       ref.current.rotation.x,
@@ -69,29 +71,18 @@ function Bust() {
     );
   });
 
-  // asiento: escala 2.35 de alto → busto abarca ±1.175; con groupY 0.05 la base
-  // queda en y=-1.125, justo sobre la tapa del pedestal.
+  // busto flotante centrado (sin pedestal), mirando a la cámara
   return (
-    <group ref={ref} position={[0, 0.05, 0]} scale={model.scale}>
+    <group ref={ref} rotation={[0, FACE_OFFSET, 0]} scale={model.scale}>
       <primitive object={model.object} />
     </group>
-  );
-}
-
-/** Pedestal oscuro (tapa en y ≈ -1.15). */
-function Plinth() {
-  return (
-    <mesh position={[0, -1.9, 0]} receiveShadow castShadow>
-      <boxGeometry args={[1.5, 1.5, 1.5]} />
-      <meshStandardMaterial color="#0b0f1a" metalness={0.4} roughness={0.7} />
-    </mesh>
   );
 }
 
 /** Anillo orbital tenue detrás de la escultura. */
 function OrbitRing() {
   return (
-    <mesh rotation={[Math.PI / 2.1, 0.2, 0]} position={[0, 0.1, -0.3]}>
+    <mesh rotation={[Math.PI / 2.1, 0.2, 0]} position={[0, 0, -0.3]}>
       <torusGeometry args={[2.3, 0.004, 16, 128]} />
       <meshBasicMaterial color={PERIWINKLE} transparent opacity={0.4} />
     </mesh>
@@ -142,7 +133,6 @@ export function HeroSculpture() {
       >
         <Bust />
       </Float>
-      <Plinth />
       <OrbitRing />
 
       <Sparkles
@@ -152,15 +142,6 @@ export function HeroSculpture() {
         speed={0.28}
         opacity={0.5}
         color="#aab4ff"
-      />
-
-      <ContactShadows
-        position={[0, -2.5, 0]}
-        opacity={0.5}
-        scale={9}
-        blur={2.6}
-        far={4}
-        color="#000000"
       />
 
       <EffectComposer>

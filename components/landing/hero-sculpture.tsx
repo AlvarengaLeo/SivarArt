@@ -12,7 +12,7 @@ function Inner() {
     <Canvas
       className="!absolute inset-0"
       dpr={[1, 1.8]}
-      camera={{ position: [0, -0.15, 6.4], fov: 32 }}
+      camera={{ position: [0, 0, 6.2], fov: 32 }}
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
     >
       <Suspense fallback={null}>

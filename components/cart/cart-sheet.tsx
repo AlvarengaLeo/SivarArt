@@ -19,7 +19,7 @@ export function CartButton() {
   return (
     <button
       onClick={() => setOpen(true)}
-      className="relative grid h-10 w-10 place-items-center rounded-md text-muted-foreground transition-colors hover:bg-surface-muted hover:text-foreground"
+      className="relative grid h-11 w-11 place-items-center rounded-md text-muted-foreground transition-colors hover:bg-surface-muted hover:text-foreground"
       aria-label="Carrito"
     >
       <ShoppingBag className="size-5" />

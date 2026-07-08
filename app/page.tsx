@@ -67,7 +67,7 @@ export default function HomePage() {
   return (
     <>
       {/* ── Hero ─────────────────────────────────────────── */}
-      <section className="relative flex min-h-dvh items-center overflow-hidden">
+      <section className="relative flex min-h-[88svh] flex-col justify-center overflow-hidden pt-20 lg:min-h-dvh lg:pt-0">
         {/* glow radial + retícula sutil */}
         <div
           className="pointer-events-none absolute inset-0 -z-10"
@@ -78,22 +78,22 @@ export default function HomePage() {
         />
         <div className="blueprint-grid blueprint-grid-fade absolute inset-0 -z-20 opacity-[0.12]" />
 
-        {/* escultura 3D a la derecha, contenida (no full-bleed en desktop) */}
-        <div className="absolute inset-0 -z-[5] lg:inset-y-[9%] lg:left-auto lg:right-[3%] lg:w-[42%]">
+        {/* escultura 3D: bloque arriba en móvil, panel a la derecha en desktop */}
+        <div className="relative h-[34svh] w-full shrink-0 lg:absolute lg:inset-y-[9%] lg:left-auto lg:right-[3%] lg:-z-[5] lg:h-auto lg:w-[42%]">
           <HeroSculptureCanvas />
         </div>
-        {/* velo para legibilidad del texto */}
-        <div className="pointer-events-none absolute inset-0 -z-[4] bg-gradient-to-r from-background via-background/80 to-transparent lg:via-background/40 lg:to-transparent" />
+        {/* velo para legibilidad (solo overlay en desktop) */}
+        <div className="pointer-events-none absolute inset-0 -z-[4] hidden lg:block lg:bg-gradient-to-r lg:from-background lg:via-background/40 lg:to-transparent" />
 
-        <div className="container relative pt-24">
+        <div className="container relative py-6 lg:py-24">
           <div className="max-w-2xl">
             <Reveal>
-              <p className="mb-6 font-mono text-xs uppercase tracking-[0.28em] text-primary">
+              <p className="mb-5 font-mono text-[0.7rem] uppercase tracking-[0.28em] text-primary sm:mb-6 sm:text-xs">
                 Un ecosistema para el arte
               </p>
             </Reveal>
             <Reveal delay={0.05}>
-              <h1 className="font-display text-4xl font-medium leading-[1.07] sm:text-5xl lg:text-[3.4rem]">
+              <h1 className="text-balance font-display text-fluid-hero font-medium">
                 <span className="block">Conectamos arte, artistas</span>
                 <span className="block">
                   y personas en{" "}
@@ -187,7 +187,7 @@ export default function HomePage() {
             <p className="font-mono text-xs uppercase tracking-[0.2em] text-primary">
               La ventaja competitiva
             </p>
-            <h2 className="mt-3 max-w-2xl text-balance font-display text-3xl font-medium sm:text-4xl">
+            <h2 className="mt-3 max-w-2xl text-balance font-display text-fluid-h2 font-medium">
               Un motor creativo sostenible.
             </h2>
           </Reveal>
@@ -230,7 +230,7 @@ export default function HomePage() {
               </p>
             </Reveal>
             <Reveal delay={0.05}>
-              <h2 className="mt-3 text-balance font-display text-3xl font-medium sm:text-4xl">
+              <h2 className="mt-3 text-balance font-display text-fluid-h2 font-medium">
                 El Hub: donde lo digital y lo tangible se encuentran.
               </h2>
             </Reveal>
@@ -264,7 +264,7 @@ export default function HomePage() {
         />
         <div className="container text-center">
           <Reveal>
-            <h2 className="mx-auto max-w-3xl text-balance font-display text-4xl font-medium sm:text-5xl">
+            <h2 className="mx-auto max-w-3xl text-balance font-display text-fluid-hero font-medium">
               Transformemos el talento de El Salvador en una industria creativa
               sostenible.
             </h2>
